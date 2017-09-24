@@ -1,0 +1,44 @@
+{
+    "name": "trainjunkies/networkrail-schedules",
+    "type": "library",
+    "keywords": ["networkrail", "trainjunkies", "schedule"],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Ben McManus"
+        }
+    ],
+    "support": {
+        "issues": "https://github.com/trainjunkies/networkrail-schedules/issues"
+    },
+    "require": {
+        "guzzlehttp/guzzle": "^6.2",
+        "vlucas/phpdotenv": "^2.4",
+        "symfony/dependency-injection": "^3.3",
+        "symfony/config": "^3.3",
+        "symfony/console": "^3.3"
+    },
+    "require-dev": {
+        "phpspec/phpspec": "^3.4",
+        "phpunit/phpunit": "^5.7",
+        "squizlabs/php_codesniffer": "^3.1"
+    },
+    "autoload": {
+        "psr-0": {
+            "": "src/"
+        }
+    },
+    "config": {
+        "bin-dir": "bin"
+    },
+    "scripts": {
+        "sniff": "bin/phpcs --standard=PSR2 src/",
+        "tests-spec": "bin/phpspec run --format=pretty",
+        "tests-integration": "bin/phpunit",
+        "ci": [
+            "@sniff",
+            "@tests-spec",
+            "@tests-integration"
+        ]
+    }
+}
