@@ -32,6 +32,7 @@
         "bin-dir": "bin"
     },
     "scripts": {
+        "beautify": "bin/phpcbf --standard=PSR2 src/",
         "sniff": "bin/phpcs --standard=PSR2 src/",
         "tests-spec": "bin/phpspec run --format=pretty",
         "tests-integration": "bin/phpunit",

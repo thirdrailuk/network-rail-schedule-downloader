@@ -2,40 +2,25 @@
 
 namespace Trainjunkies\StaticDataFeeds\NetworkRail;
 
-use \GuzzleHttp\Client as HttpClient;
-use Trainjunkies\StaticDataFeeds\NetworkRail\Schedule\UriFactory;
+use Trainjunkies\StaticDataFeeds\Http\Adapter as HttpAdapter;
 
 class Client
 {
     /**
-     * @var HttpClient
+     * @var HttpAdapter
      */
-    private $httpClient;
-    /**
-     * @var Schedule\UriFactory
-     */
-    private $uriFactory;
-    /**
-     * @var array
-     */
-    private $requestOptions = [];
+    private $httpAdapter;
 
-    public function __construct(
-        HttpClient $httpClient,
-        UriFactory $uriFactory,
-        $requestOptions = []
-    ) {
-        $this->httpClient = $httpClient;
-        $this->uriFactory = $uriFactory;
-        $this->requestOptions = $requestOptions;
+    public function __construct(HttpAdapter $httpAdapter)
+    {
+        $this->httpAdapter = $httpAdapter;
     }
 
     public function request($type, $day)
     {
-        return $this->httpClient->request(
-            'GET',
-            $this->uriFactory->createUri($type, $day),
-            $this->requestOptions
-        );
+        return $this->httpAdapter->get('CifFileAuthenticate', [
+            'type' => $type,
+            'day'  => $day
+        ]);
     }
 }

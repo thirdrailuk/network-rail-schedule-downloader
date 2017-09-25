@@ -4,25 +4,27 @@ use Symfony\Component\DependencyInjection\Reference;
 
 // @codingStandardsIgnoreStart
 
+try {
+    $authentication = \Trainjunkies\StaticDataFeeds\NetworkRail\Authentication::fromUsernameAndPassword(
+        getenv('TRAINJUNKIES_NETWORKRAIL_USERNAME'),
+        getenv('TRAINJUNKIES_NETWORKRAIL_PASSWORD')
+    );
+}
+catch (Exception $e) {
+    fwrite(STDERR, $e->getMessage() . PHP_EOL);
+    exit(1);
+}
+
 // Services
-$authentication = \Trainjunkies\StaticDataFeeds\NetworkRail\Authentication::fromUsernameAndPassword(
-    getenv('TRAINJUNKIES_NETWORKRAIL_USERNAME'),
-    getenv('TRAINJUNKIES_NETWORKRAIL_PASSWORD')
-);
+$container->register('http.adapter.guzzle', \Trainjunkies\StaticDataFeeds\Http\GuzzleAdapter::class)
+    ->addArgument($authentication)
+    ->addArgument(new \GuzzleHttp\Client)
+    ->addArgument(new \GuzzleHttp\Cookie\CookieJar);
+
+unset($authentication);
 
 $container->register('networkrail.client', \Trainjunkies\StaticDataFeeds\NetworkRail\Client::class)
-    ->addArgument(new \GuzzleHttp\Client)
-    ->addArgument(new \Trainjunkies\StaticDataFeeds\NetworkRail\Schedule\UriFactory)
-    ->addArgument([
-        'cookie' => new \GuzzleHttp\Cookie\CookieJar,
-        'stream' => true,
-        'auth' => [
-            $authentication->username(),
-            $authentication->password(),
-            'basic'
-        ]
-    ]);
-unset($authentication);
+    ->addArgument(new Reference('http.adapter.guzzle'));
 
 $container->register(
     'networkrail.schedule.download_handler',

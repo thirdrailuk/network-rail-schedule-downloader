@@ -8,13 +8,7 @@ use Prophecy\Argument;
 
 class DaySpec extends ObjectBehavior
 {
-    function it_is_initializable()
-    {
-        $this->beConstructedFromDayString('mon');
-        $this->shouldHaveType(Day::class);
-    }
-
-    function it_will_throw_exception_for_invalid_days()
+    function it_can_throw_exception_for_invalid_days()
     {
         $this->beConstructedFromDayString('xxx');
         $this->shouldThrow(\Exception::class)->duringInstantiation();

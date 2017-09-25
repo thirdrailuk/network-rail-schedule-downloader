@@ -10,7 +10,7 @@ use Prophecy\Argument;
 
 class DownloadHandlerSpec extends ObjectBehavior
 {
-    function it_is_initializable(
+    function it_can_read_stream(
         ResponseInterface $response
     ) {
 
