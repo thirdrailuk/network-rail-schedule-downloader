@@ -4,6 +4,9 @@ namespace Trainjunkies\StaticDataFeeds\Http;
 
 use GuzzleHttp\Client as GuzzleHttpClient;
 use GuzzleHttp\Cookie\CookieJar;
+use GuzzleHttp\Exception\ClientException;
+use Trainjunkies\StaticDataFeeds\Exception\HttpException;
+use Trainjunkies\StaticDataFeeds\Exception\NetworkRailException;
 use Trainjunkies\StaticDataFeeds\NetworkRail\Authentication;
 
 class GuzzleAdapter implements Adapter
@@ -35,7 +38,16 @@ class GuzzleAdapter implements Adapter
     {
         $options = $this->requestOptions($params, $headers);
 
-        return $this->guzzleClient->get($uri, $options);
+        try {
+            return $this->guzzleClient->get($uri, $options);
+        }
+        catch (ClientException $e) {
+            if ($e->getCode() === 401) {
+                throw NetworkRailException::unauthorized($options['query']['type'], $e);
+            }
+
+            throw HttpException::httpError($e);
+        }
     }
 
     /**
