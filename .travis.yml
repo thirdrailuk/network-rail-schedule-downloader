@@ -1,8 +1,8 @@
 language: php
 
-php: [5.6, 7.0, 7.1]
+php: [7.0, 7.1, 7.2]
 
-sudo: false
+sudo: required
 
 cache:
   directories:
@@ -16,3 +16,11 @@ install:
 
 script:
  - composer ci
+
+deploy:
+  provider: releases
+  api_key: $GITHUB_API_KEY
+  file: network-rail-schedules.phar
+  skip_cleanup: true
+  on:
+    tags: true

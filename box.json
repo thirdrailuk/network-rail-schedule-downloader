@@ -1,0 +1,5 @@
+{
+    "chmod": "0755",
+    "main": "bin/networkrail-schedules",
+    "output": "network-rail-schedules.phar"
+}

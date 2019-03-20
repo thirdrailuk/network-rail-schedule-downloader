@@ -2,6 +2,7 @@
 *.log
 .env
 vendor
+network-rail-schedules.phar
 composer.lock
 bin/box
 bin/composer*

@@ -39,10 +39,12 @@
         "beauty": "bin/phpcbf --standard=PSR2 src/",
         "spec": "bin/phpspec run --format=pretty --no-code-generation --stop-on-failure",
         "integration": "bin/phpunit",
+        "build": "bin/box compile",
         "ci": [
             "@sniff",
             "@spec",
-            "@integration"
+            "@integration",
+            "@build"
         ]
     }
 }
