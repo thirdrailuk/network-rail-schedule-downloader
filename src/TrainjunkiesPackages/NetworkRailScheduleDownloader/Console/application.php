@@ -2,7 +2,7 @@
 
 use Symfony\Component\Console\Application;
 
-$application = new Application('TrainjunkiesPackages - Static Data Feeds');
+$application = new Application('Trainjunkies - Network Rail Schedule Downloader');
 
 $application->add($container->get('console.command.full.all'));
 $application->add($container->get('console.command.full.toc'));
