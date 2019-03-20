@@ -3,4 +3,9 @@
 .env
 vendor
 composer.lock
+bin/box
+bin/composer*
+bin/jsonlint
+bin/phar*
 bin/php*
+bin/va*
