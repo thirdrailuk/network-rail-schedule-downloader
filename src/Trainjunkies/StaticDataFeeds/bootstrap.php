@@ -13,7 +13,8 @@ try {
 }
 catch (\Dotenv\Exception\InvalidPathException $e) {}
 
-$loader = new PhpFileLoader(new ContainerBuilder, new FileLocator(__DIR__));
+$container = new ContainerBuilder;
+$loader = new PhpFileLoader($container, new FileLocator(__DIR__));
 $loader->load('services.php');
 
 // @codingStandardsIgnoreEnd
