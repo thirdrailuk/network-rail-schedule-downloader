@@ -1,6 +1,8 @@
 #!/usr/bin/env php
 <?php
 
-require_once __DIR__ . '/../src/Trainjunkies/StaticDataFeeds/bootstrap.php';
+require_once __DIR__
+    . '/../src/TrainjunkiesPackages/StaticDataFeeds/bootstrap.php';
 
-require_once __DIR__ . '/../src/Trainjunkies/StaticDataFeeds/Console/application.php';
+require_once __DIR__
+    . '/../src/TrainjunkiesPackages/StaticDataFeeds/Console/application.php';
