@@ -1,7 +1,8 @@
 {
-    "name": "trainjunkies/networkrail-schedules",
+    "name": "trainjunkies-packages/network-rail-schedule-downloader",
+    "description": "Download NROD Schedules",
+    "keywords": ["trainjunkies", "network rail", "data feeds", "open rail data"],
     "type": "library",
-    "keywords": ["networkrail", "trainjunkies", "schedule"],
     "license": "MIT",
     "authors": [
         {
@@ -9,7 +10,7 @@
         }
     ],
     "support": {
-        "issues": "https://github.com/trainjunkies/networkrail-schedules/issues"
+        "issues": "https://github.com/trainjunkies-packages/network-rail-schedule-downloader/issues"
     },
     "require": {
         "guzzlehttp/guzzle": "^6.2",
@@ -28,18 +29,19 @@
             "": "src/"
         }
     },
+    "bin": ["bin/networkrail-schedules"],
     "config": {
         "bin-dir": "bin"
     },
     "scripts": {
-        "beautify": "bin/phpcbf --standard=PSR2 src/",
-        "sniff": "bin/phpcs --standard=PSR2 src/",
-        "tests-spec": "bin/phpspec run --format=pretty",
-        "tests-integration": "bin/phpunit",
+        "sniff": "bin/phpcs -sp --standard=PSR2 src/",
+        "beauty": "bin/phpcbf --standard=PSR2 src/",
+        "spec": "bin/phpspec run --format=pretty --no-code-generation --stop-on-failure",
+        "integration": "bin/phpunit",
         "ci": [
             "@sniff",
-            "@tests-spec",
-            "@tests-integration"
+            "@spec",
+            "@integration"
         ]
     }
 }
