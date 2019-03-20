@@ -40,8 +40,7 @@ class GuzzleAdapter implements Adapter
 
         try {
             return $this->guzzleClient->get($uri, $options);
-        }
-        catch (ClientException $e) {
+        } catch (ClientException $e) {
             if ($e->getCode() === 401) {
                 throw NetworkRailException::unauthorized($options['query']['type'], $e);
             }
