@@ -2,7 +2,7 @@
 <?php
 
 require_once __DIR__
-    . '/../src/TrainjunkiesPackages/StaticDataFeeds/bootstrap.php';
+    . '/../src/TrainjunkiesPackages/NetworkRailScheduleDownloader/bootstrap.php';
 
 require_once __DIR__
-    . '/../src/TrainjunkiesPackages/StaticDataFeeds/Console/application.php';
+    . '/../src/TrainjunkiesPackages/NetworkRailScheduleDownloader/Console/application.php';

@@ -11,7 +11,8 @@ class ContainerTest
 
     protected function setUp()
     {
-        $path = __DIR__ . '/../src/TrainjunkiesPackages/StaticDataFeeds';
+        $path = __DIR__
+            . '/../src/TrainjunkiesPackages/NetworkRailScheduleDownloader';
 
         $this->container = new ContainerBuilder;
         $loader = new PhpFileLoader($this->container, new FileLocator($path));
